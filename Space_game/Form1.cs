@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace Space_game
         {
             InitializeComponent();
             new Przeciwnik().CreateSprites(this);
-            ///WstawPrzeciwnika
+            WstawObcego();
         }
         List<PictureBox> obcy = new List<PictureBox>();
         List<PictureBox> UsunObcy = new List<PictureBox>();
@@ -38,6 +39,10 @@ namespace Space_game
         bool ruchPrawo;
         bool strzal;
 
+        
+        
+        
+        
         private void KlawiszPress(object sender, KeyEventArgs e) /// obsługa poruszania sie
         {
             if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
@@ -74,9 +79,6 @@ namespace Space_game
                 strzal = false;
             }
         }
-
-
-
 
 
         private void Pocisk()
@@ -119,17 +121,71 @@ namespace Space_game
 
                     foreach(Control ct in this.Controls)
                     {
-                        if(ct is PictureBox && ct.Name == "Laser")
+                        if (ct is PictureBox && ct.Name == "Laser")
                         {
-                            /// trzeba dokonczyc
+                            PictureBox laser = (PictureBox)ct;
+
+                            if (bullet.Bounds.IntersectsWith(laser.Bounds))
+                            {
+                                this.Controls.Remove(bullet);
+                                this.Controls.Remove(laser);
+                                pkt++;
+                                Punkty(pkt);
+                            }
                         }
                     }
+
+                    foreach(Control ctrl in this.Controls)
+                    {
+                        if(ctrl is PictureBox && ctrl.Name == "Obcy")
+                        {
+                            PictureBox obcyy = (PictureBox)ctrl;
+
+                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds)&& !Kolizja(obcyy ))
+                            {
+                                this.Controls.Remove(bullet);
+                                this.Controls.Remove(obcyy);
+                                obcy.Remove(obcyy);
+                                pkt += 5;
+                                Punkty(pkt);
+                                SprawdzWygrana();
+                            }
+                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds)&& Kolizja(obcyy))
+                            {
+                                this.Controls.Remove(bullet);
+                                this.Controls.Remove(obcyy);
+                                UsunObcy.Add(obcyy);
+                                pkt += 5;
+                                Punkty(pkt);
+                                SprawdzWygrana();
+                            }
+
+                        }
+
+
+
+                    }
+
+
+
                 }
                 
             }
 
         }
 
+        private void SprawdzWygrana()
+        {
+            int licznik = 0;
+
+            foreach(Control c in this.Controls)
+            {
+                if (c is PictureBox && c.Name == "Obcy") licznik++;
+            }
+            if (licznik == 0) Wygrales();
+
+
+        }
         
 
         private void Wygrales() /// komunikat z informacja o wygranej
@@ -169,15 +225,110 @@ namespace Space_game
             }
 
         }
-        private void Punkty(int pkt)
+        private void Punkty(int pkt)  /// wyswietlanie liczby pkt
         {
             label2.Text = "Punkty: " + pkt.ToString();
         }
 
         private void Observe(object sender, EventArgs e)
         {
-
+            Obserwator.Stop();
+            foreach(PictureBox Usuniety in UsunObcy)
+            {
+                obcy.Remove(Usuniety);
+            }
+            UsunObcy.Clear();
         }
+
+        private bool Kolizja(PictureBox a)
+        {
+            return a.Location.X <= 0 || a.Location.X >= limit;
+        }
+
+
+        private void OstatecznaKolizja(PictureBox a)  
+         {  
+                if(a.Bounds.IntersectsWith(Gracz.Bounds))
+                {
+                    Przegrales();
+                }           
+        }
+
+        private void UstawPozycje(PictureBox a)
+        {
+            int rozmiar = a.Height;
+
+            if(Kolizja(a))
+            {
+                gora = 1; lewo = 1; zycia++;
+
+                if(zycia == rozmiar)
+                {
+                    gora = 0; lewo = predkosc * (-1); Obserwator.Start();
+                }
+                else if(zycia == rozmiar*2)
+                {
+                    gora = 0; lewo = predkosc; zycia = 0; Obserwator.Start();
+                }
+            }
+        }
+
+        private void RuchObcego()
+        {
+            foreach(PictureBox obcyy in obcy)
+            {
+                obcyy.Location = new Point(obcyy.Location.X + lewo, obcyy.Location.Y + gora);
+                UstawPozycje(obcyy);
+                OstatecznaKolizja(obcyy);
+            }
+        }
+
+
+
+        private void RuchObcego_Tick(object sender, EventArgs e)
+        {
+            RuchObcego();
+        }
+
+        private void WstawObcego()
+        {
+            foreach(Control c in this.Controls)
+            {
+                if(c is PictureBox && c.Name =="Obcy")
+                {
+                    PictureBox obcyy = (PictureBox)c;
+                    obcy.Add(obcyy);
+                }
+            }
+        }
+
+        private void Laser(PictureBox a)
+        {
+            PictureBox laser = new PictureBox();
+            laser.Location = new Point(a.Location.X + a.Width / 3, a.Location.Y + 20);
+            laser.Size = new Size(5, 20);
+            laser.BackgroundImage = Properties.Resources.laser;
+            laser.BackgroundImageLayout = ImageLayout.Stretch;
+            laser.Name = "Laser";
+            this.Controls.Add(laser);
+        }
+
+        private void StrzałTick(object sender, EventArgs e)
+        {
+            ///
+        }
+
+        private void KolizjaZLaserem(object sender, EventArgs e)
+        {
+            ///
+        }
+
+        private void UtrataZycia()
+        {
+            ///
+        }
+
+
     }
 }
 
