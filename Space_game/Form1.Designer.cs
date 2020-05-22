@@ -82,7 +82,7 @@
             this.pictureBox2.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(121, 710);
-            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Name = "Zycie2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
@@ -92,7 +92,7 @@
             this.pictureBox1.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(85, 710);
-            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Name = "Zycie1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
