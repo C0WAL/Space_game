@@ -50,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(22, 669);
+            this.label1.Location = new System.Drawing.Point(12, 710);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 20);
             this.label1.TabIndex = 0;
@@ -81,7 +81,7 @@
             // 
             this.pictureBox2.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(107, 699);
+            this.pictureBox2.Location = new System.Drawing.Point(121, 710);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.TabIndex = 3;
@@ -91,7 +91,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(56, 699);
+            this.pictureBox1.Location = new System.Drawing.Point(85, 710);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.TabIndex = 4;
@@ -99,26 +99,37 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.GraczRuch);
             // 
             // timer2
             // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.Wystrzel);
             // 
             // timer3
             // 
+            this.timer3.Enabled = true;
+            this.timer3.Interval = 10;
             this.timer3.Tick += new System.EventHandler(this.RuchObcego_Tick);
             // 
             // timer4
             // 
+            this.timer4.Enabled = true;
+            this.timer4.Interval = 1500;
             this.timer4.Tick += new System.EventHandler(this.StrzałTick);
             // 
             // timer5
             // 
+            this.timer5.Enabled = true;
+            this.timer5.Interval = 1;
             this.timer5.Tick += new System.EventHandler(this.KolizjaZLaserem);
             // 
             // Obserwator
             // 
+            this.Obserwator.Interval = 1;
             this.Obserwator.Tick += new System.EventHandler(this.Observe);
             // 
             // Space_invaders

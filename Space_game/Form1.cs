@@ -4,12 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Space_game
 {
@@ -22,7 +20,7 @@ namespace Space_game
             WstawObcego();
         }
         List<PictureBox> obcy = new List<PictureBox>();
-        List<PictureBox> UsunObcy = new List<PictureBox>();
+        List<PictureBox> opoznienie = new List<PictureBox>();
 
         const int x = 360;
         const int y = 650;
@@ -31,7 +29,7 @@ namespace Space_game
         int predkosc = -1;
         int lewo =  -1;
         int gora = 0;
-        int zycia = 0;
+        int cnt = 0;
         int pkt = 0;
 
         bool gra = true;
@@ -88,7 +86,7 @@ namespace Space_game
             bullet.Size = new Size(5, 20);
             bullet.BackgroundImage = Properties.Resources.bullet;
             bullet.BackgroundImageLayout = ImageLayout.Stretch;
-            bullet.Name = "Pocisk";
+            bullet.Name = "Bullet";
             this.Controls.Add(bullet);
 
         }
@@ -109,7 +107,7 @@ namespace Space_game
         {
             foreach(Control c in this.Controls)
             {
-                if (c is PictureBox && c.Name == "Pocisk")
+                if (c is PictureBox && c.Name == "Bullet")
                 {
                     PictureBox bullet = (PictureBox)c;
                     bullet.Top -= 5;
@@ -137,11 +135,11 @@ namespace Space_game
 
                     foreach(Control ctrl in this.Controls)
                     {
-                        if(ctrl is PictureBox && ctrl.Name == "Obcy")
+                        if(ctrl is PictureBox && ctrl.Name == "Alien")
                         {
                             PictureBox obcyy = (PictureBox)ctrl;
 
-                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds)&& !Kolizja(obcyy ))
+                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && !Kolizja(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
@@ -150,11 +148,11 @@ namespace Space_game
                                 Punkty(pkt);
                                 SprawdzWygrana();
                             }
-                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds)&& Kolizja(obcyy))
+                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && Kolizja(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
-                                UsunObcy.Add(obcyy);
+                                opoznienie.Add(obcyy);
                                 pkt += 5;
                                 Punkty(pkt);
                                 SprawdzWygrana();
@@ -180,7 +178,7 @@ namespace Space_game
 
             foreach(Control c in this.Controls)
             {
-                if (c is PictureBox && c.Name == "Obcy") licznik++;
+                if (c is PictureBox && c.Name == "Alien") licznik++;
             }
             if (licznik == 0) Wygrales();
 
@@ -233,11 +231,11 @@ namespace Space_game
         private void Observe(object sender, EventArgs e)
         {
             Obserwator.Stop();
-            foreach(PictureBox Usuniety in UsunObcy)
+            foreach(PictureBox opozniony in opoznienie)
             {
-                obcy.Remove(Usuniety);
+                obcy.Remove(opozniony);
             }
-            UsunObcy.Clear();
+            opoznienie.Clear();
         }
 
         private bool Kolizja(PictureBox a)
@@ -260,15 +258,15 @@ namespace Space_game
 
             if(Kolizja(a))
             {
-                gora = 1; lewo = 1; zycia++;
+                gora = 1; lewo = 1; cnt++;
 
-                if(zycia == rozmiar)
+                if(cnt == rozmiar)
                 {
                     gora = 0; lewo = predkosc * (-1); Obserwator.Start();
                 }
-                else if(zycia == rozmiar*2)
+                else if(cnt == rozmiar*2)
                 {
-                    gora = 0; lewo = predkosc; zycia = 0; Obserwator.Start();
+                    gora = 0; lewo = predkosc; cnt = 0; Obserwator.Start();
                 }
             }
         }
@@ -294,7 +292,7 @@ namespace Space_game
         {
             foreach(Control c in this.Controls)
             {
-                if(c is PictureBox && c.Name =="Obcy")
+                if(c is PictureBox && c.Name =="Alien")
                 {
                     PictureBox obcyy = (PictureBox)c;
                     obcy.Add(obcyy);
@@ -315,17 +313,52 @@ namespace Space_game
 
         private void StrzałTick(object sender, EventArgs e)
         {
-            ///
+            Random r = new Random();
+            int pick; 
+
+            if (obcy.Count > 0)
+            {
+                pick = r.Next(obcy.Count);
+                Laser(obcy[pick]);
+            }
         }
 
         private void KolizjaZLaserem(object sender, EventArgs e)
         {
-            ///
+             foreach(Control c in this.Controls)
+            {
+                if (c is PictureBox && c.Name == "Laser")
+                {
+                    PictureBox laser = (PictureBox)c;
+                    laser.Top += 5; 
+
+                    if (laser.Location.Y >= limit)
+                    {
+                        this.Controls.Remove(laser); 
+                    }
+                    if (laser.Bounds.IntersectsWith(Gracz.Bounds))
+                    {
+                        this.Controls.Remove(laser); 
+                        UtrataZycia(); 
+                    }                    
+                }
+            }
         }
 
         private void UtrataZycia()
         {
-            ///
+            Gracz.Location = new Point(x,y);
+            foreach(Control c in this.Controls)     
+            {
+                if(c is PictureBox && c.Name.Contains("Zycie") && c.Visible==true)
+                    
+                {
+                    PictureBox Gracz = (PictureBox)c;
+                    Gracz.Visible = false;
+                    return;
+                }
+            }
+            Przegrales();
         }
 
 
