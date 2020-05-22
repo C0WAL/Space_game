@@ -258,7 +258,7 @@ namespace Space_game
 
             if(Kolizja(a))
             {
-                gora = 1; lewo = 1; cnt++;
+                gora = 1; lewo = 0; cnt++;
 
                 if(cnt == rozmiar)
                 {
