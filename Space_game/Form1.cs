@@ -95,11 +95,11 @@ namespace Space_game
         {
             if(ruchLewo && Gracz.Location.X >=0)
             {
-                Gracz.Left--;
+                Gracz.Left-=3;
             }
             else if(ruchPrawo && Gracz.Location.X <= limit)
             {
-                Gracz.Left++;
+                Gracz.Left+=3;
             }
         }
 
@@ -192,7 +192,7 @@ namespace Space_game
 
             foreach(Control c in this.Controls)
             {
-                if(c is Label && c.Name == "Koniec")
+                if(c is Label && c.Name == "Finish")
                 {
                     Label lbl = (Label)c;
                     lbl.Text = "Wygrales !" + "\n" + "Punkty: " + pkt.ToString();
@@ -210,7 +210,7 @@ namespace Space_game
 
             foreach(Control c in this.Controls)
             {
-                if(c is Label && c.Name == "Koniec")
+                if(c is Label && c.Name == "Finish")
                 {
                     Label lbl = (Label)c;
                     lbl.Text = "Przegrales!";
