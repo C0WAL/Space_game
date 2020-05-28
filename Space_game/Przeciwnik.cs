@@ -18,8 +18,8 @@ namespace Space_game
         {
             szerokość = 40;
             wysokość = 40;
-            kolumny = 10;
-            wiersze = 5;
+            kolumny = 5;
+            wiersze = 3;
             odstępy = 10;
             x = 150;
             y = 0;
@@ -47,5 +47,72 @@ namespace Space_game
                 x = 150;
             }
         }
+
+        public void CreateSprites2(Form p)
+        {
+            wiersze = 5;
+            kolumny = 6;
+
+            for (int i = 0; i < wiersze; i++)
+            {
+                for (int j = 0; j < kolumny; j++)
+                {
+                    CreateControl(p);
+                    x += szerokość + odstępy;
+                }
+                y += wysokość + odstępy;
+                x = 150;
+            }
+        }
+
+        public void CreateSprites3(Form p)
+        {
+            wiersze = 6;
+            kolumny = 7;
+
+            for (int i = 0; i < wiersze; i++)
+            {
+                for (int j = 0; j < kolumny; j++)
+                {
+                    CreateControl(p);
+                    x += szerokość + odstępy;
+                }
+                y += wysokość + odstępy;
+                x = 150;
+            }
+        }
+        public void CreateSprites4(Form p)
+        {
+            wiersze = 7;
+            kolumny = 8;
+
+            for (int i = 0; i < wiersze; i++)
+            {
+                for (int j = 0; j < kolumny; j++)
+                {
+                    CreateControl(p);
+                    x += szerokość + odstępy;
+                }
+                y += wysokość + odstępy;
+                x = 150;
+            }
+        }
+        public void CreateSprites5(Form p)
+        {
+            wiersze = 7;
+            kolumny = 10;
+
+            for (int i = 0; i < wiersze; i++)
+            {
+                for (int j = 0; j < kolumny; j++)
+                {
+                    CreateControl(p);
+                    x += szerokość + odstępy;
+                }
+                y += wysokość + odstępy;
+                x = 150;
+            }
+        }
+
     }
 }

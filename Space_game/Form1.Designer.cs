@@ -40,6 +40,8 @@
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.Obserwator = new System.Windows.Forms.Timer(this.components);
+            this.Fala = new System.Windows.Forms.Label();
+            this.Finish = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -82,7 +84,7 @@
             this.pictureBox2.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(121, 710);
-            this.pictureBox2.Name = "Zycie2";
+            this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
@@ -92,7 +94,7 @@
             this.pictureBox1.BackgroundImage = global::Space_game.Properties.Resources.tank;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(85, 710);
-            this.pictureBox1.Name = "Zycie1";
+            this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -107,7 +109,7 @@
             // 
             this.timer2.Enabled = true;
             this.timer2.Interval = 10;
-            this.timer2.Tick += new System.EventHandler(this.Wystrzel);
+            this.timer2.Tick += new System.EventHandler(this.KontrolaPociskow);
             // 
             // timer3
             // 
@@ -132,19 +134,42 @@
             this.Obserwator.Interval = 1;
             this.Obserwator.Tick += new System.EventHandler(this.Observe);
             // 
+            // Fala
+            // 
+            this.Fala.AutoSize = true;
+            this.Fala.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Fala.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Fala.Location = new System.Drawing.Point(315, 732);
+            this.Fala.Name = "Fala";
+            this.Fala.Size = new System.Drawing.Size(140, 20);
+            this.Fala.TabIndex = 5;
+            this.Fala.Text = "Poziom pierwszy";
+            // 
+            // Finish
+            // 
+            this.Finish.AutoSize = true;
+            this.Finish.Font = new System.Drawing.Font("Sitka Small", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Finish.ForeColor = System.Drawing.Color.White;
+            this.Finish.Location = new System.Drawing.Point(286, 285);
+            this.Finish.Name = "Finish";
+            this.Finish.Size = new System.Drawing.Size(0, 52);
+            this.Finish.TabIndex = 7;
+            // 
             // Space_invaders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(784, 761);
+            this.Controls.Add(this.Finish);
+            this.Controls.Add(this.Fala);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.Gracz);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Space_invaders";
-            this.Text = "Form1";
+            this.Text = "Spave Invaders ";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KlawiszPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KlawiszZwolniony);
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).EndInit();
@@ -168,6 +193,8 @@
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.Timer Obserwator;
+        private System.Windows.Forms.Label Fala;
+        private System.Windows.Forms.Label Finish;
     }
 }
 

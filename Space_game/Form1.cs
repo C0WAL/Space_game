@@ -103,7 +103,7 @@ namespace Space_game
             }
         }
 
-        private void Wystrzel(object sender, EventArgs e)
+        private void KontrolaPociskow(object sender, EventArgs e)
         {
             foreach(Control c in this.Controls)
             {
@@ -127,8 +127,8 @@ namespace Space_game
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(laser);
-                                pkt++;
-                                Punkty(pkt);
+                               // pkt++;
+                                //Punkty(pkt);
                             }
                         }
                     }
@@ -139,7 +139,7 @@ namespace Space_game
                         {
                             PictureBox obcyy = (PictureBox)ctrl;
 
-                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && !Kolizja(obcyy))
+                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && !LimitPola(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
@@ -148,7 +148,7 @@ namespace Space_game
                                 Punkty(pkt);
                                 SprawdzWygrana();
                             }
-                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && Kolizja(obcyy))
+                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && LimitPola(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
@@ -160,11 +160,7 @@ namespace Space_game
 
                         }
 
-
-
                     }
-
-
 
                 }
                 
@@ -180,9 +176,57 @@ namespace Space_game
             {
                 if (c is PictureBox && c.Name == "Alien") licznik++;
             }
-            if (licznik == 0) Wygrales();
+           if(this.pkt == 75)
+             {
+                Fala.Text = "Poziom drugi";
+                DateTime Tthen = DateTime.Now;
+                do
+                {
+                    Application.DoEvents();
+                } while (Tthen.AddSeconds(2) > DateTime.Now);
+
+                new Przeciwnik().CreateSprites2(this);
+                WstawObcego();
+             }
+             if(this.pkt == 225)
+              {
+                  Fala.Text = "Poziom trzeci";
+                DateTime Tthen = DateTime.Now;
+                do
+                {
+                    Application.DoEvents();
+                } while (Tthen.AddSeconds(2) > DateTime.Now);
+
+                new Przeciwnik().CreateSprites3(this);
+                  WstawObcego();
+              }
+             if(this.pkt == 435)
+              {
+                 Fala.Text = "Poziom czwarty";
+                DateTime Tthen = DateTime.Now;
+                do
+                {
+                    Application.DoEvents();
+                } while (Tthen.AddSeconds(2) > DateTime.Now);
+
+                new Przeciwnik().CreateSprites4(this);
+                  WstawObcego();
+              }
+            if (this.pkt == 715)
+            {
+                Fala.Text = "Poziom piąty";
+                DateTime Tthen = DateTime.Now;
+                do
+                {
+                    Application.DoEvents();
+                } while (Tthen.AddSeconds(2) > DateTime.Now);
+
+                new Przeciwnik().CreateSprites5(this);
+                WstawObcego();
+            }
 
 
+            if (this.pkt == 1065) Wygrales();
         }
         
 
@@ -238,7 +282,7 @@ namespace Space_game
             opoznienie.Clear();
         }
 
-        private bool Kolizja(PictureBox a)
+        private bool LimitPola(PictureBox a)
         {
             return a.Location.X <= 0 || a.Location.X >= limit;
         }
@@ -256,7 +300,7 @@ namespace Space_game
         {
             int rozmiar = a.Height;
 
-            if(Kolizja(a))
+            if(LimitPola(a))
             {
                 gora = 1; lewo = 0; cnt++;
 
@@ -360,8 +404,6 @@ namespace Space_game
             }
             Przegrales();
         }
-
-
     }
 }
 
