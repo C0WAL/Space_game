@@ -169,7 +169,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Space_invaders";
-            this.Text = "Spave Invaders ";
+            this.Text = "Space game 0.4";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KlawiszPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KlawiszZwolniony);
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).EndInit();
