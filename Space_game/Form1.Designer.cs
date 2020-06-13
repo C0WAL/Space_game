@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Gracz = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Zycie2 = new System.Windows.Forms.PictureBox();
+            this.Zycie1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
@@ -43,8 +43,8 @@
             this.Fala = new System.Windows.Forms.Label();
             this.Finish = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -79,25 +79,25 @@
             this.Gracz.TabIndex = 2;
             this.Gracz.TabStop = false;
             // 
-            // pictureBox2
+            // Zycie2
             // 
-            this.pictureBox2.BackgroundImage = global::Space_game.Properties.Resources.tank;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(121, 710);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
+            this.Zycie2.BackgroundImage = global::Space_game.Properties.Resources.tank;
+            this.Zycie2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Zycie2.Location = new System.Drawing.Point(121, 710);
+            this.Zycie2.Name = "Zycie2";
+            this.Zycie2.Size = new System.Drawing.Size(30, 30);
+            this.Zycie2.TabIndex = 3;
+            this.Zycie2.TabStop = false;
             // 
-            // pictureBox1
+            // Zycie1
             // 
-            this.pictureBox1.BackgroundImage = global::Space_game.Properties.Resources.tank;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(85, 710);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.Zycie1.BackgroundImage = global::Space_game.Properties.Resources.tank;
+            this.Zycie1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Zycie1.Location = new System.Drawing.Point(85, 710);
+            this.Zycie1.Name = "Zycie1";
+            this.Zycie1.Size = new System.Drawing.Size(30, 30);
+            this.Zycie1.TabIndex = 4;
+            this.Zycie1.TabStop = false;
             // 
             // timer1
             // 
@@ -163,8 +163,8 @@
             this.ClientSize = new System.Drawing.Size(784, 761);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.Fala);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.Zycie1);
+            this.Controls.Add(this.Zycie2);
             this.Controls.Add(this.Gracz);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -173,8 +173,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KlawiszPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KlawiszZwolniony);
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,8 +185,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Gracz;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox Zycie2;
+        private System.Windows.Forms.PictureBox Zycie1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;

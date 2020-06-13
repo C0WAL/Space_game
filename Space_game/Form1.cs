@@ -13,14 +13,14 @@ namespace Space_game
 {
     public partial class Space_invaders : Form
     {
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+       //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         public Space_invaders()
         {
             InitializeComponent();
             new Przeciwnik().CreateSprites(this);
             WstawObcego();
-            player.SoundLocation = "space.wav";
-            player.Play();
+            //player.SoundLocation = "space.wav";
+            //player.Play();
 
         }
         List<PictureBox> obcy = new List<PictureBox>();

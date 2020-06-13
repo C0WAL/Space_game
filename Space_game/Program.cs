@@ -16,7 +16,7 @@ namespace Space_game
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Space_invaders());
+            Application.Run(new Menutytul());
         }
     }
 }
