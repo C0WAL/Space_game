@@ -1,4 +1,5 @@
-﻿namespace Space_game
+﻿namespace Trudny
+
 {
     partial class Space_invaders
     {
@@ -31,6 +32,9 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.Gracz = new System.Windows.Forms.PictureBox();
+            this.Zycie2 = new System.Windows.Forms.PictureBox();
+            this.Zycie1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
@@ -39,12 +43,9 @@
             this.Obserwator = new System.Windows.Forms.Timer(this.components);
             this.Fala = new System.Windows.Forms.Label();
             this.Finish = new System.Windows.Forms.Label();
-            this.Zycie1 = new System.Windows.Forms.PictureBox();
-            this.Zycie2 = new System.Windows.Forms.PictureBox();
-            this.Gracz = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +69,36 @@
             this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "PUNKTY: 0";
+            // 
+            // Gracz
+            // 
+            this.Gracz.BackgroundImage = global::Space_game.Properties.Resources.tank;
+            this.Gracz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Gracz.Location = new System.Drawing.Point(360, 650);
+            this.Gracz.Name = "Gracz";
+            this.Gracz.Size = new System.Drawing.Size(50, 50);
+            this.Gracz.TabIndex = 2;
+            this.Gracz.TabStop = false;
+            // 
+            // Zycie2
+            // 
+            this.Zycie2.BackgroundImage = global::Space_game.Properties.Resources.tank;
+            this.Zycie2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Zycie2.Location = new System.Drawing.Point(121, 710);
+            this.Zycie2.Name = "Zycie2";
+            this.Zycie2.Size = new System.Drawing.Size(30, 30);
+            this.Zycie2.TabIndex = 3;
+            this.Zycie2.TabStop = false;
+            // 
+            // Zycie1
+            // 
+            this.Zycie1.BackgroundImage = global::Space_game.Properties.Resources.tank;
+            this.Zycie1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Zycie1.Location = new System.Drawing.Point(85, 710);
+            this.Zycie1.Name = "Zycie1";
+            this.Zycie1.Size = new System.Drawing.Size(30, 30);
+            this.Zycie1.TabIndex = 4;
+            this.Zycie1.TabStop = false;
             // 
             // timer1
             // 
@@ -125,36 +156,6 @@
             this.Finish.Size = new System.Drawing.Size(0, 52);
             this.Finish.TabIndex = 7;
             // 
-            // Zycie1
-            // 
-            this.Zycie1.BackgroundImage = global::Space_game.Properties.Resources.tank;
-            this.Zycie1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Zycie1.Location = new System.Drawing.Point(85, 710);
-            this.Zycie1.Name = "Zycie1";
-            this.Zycie1.Size = new System.Drawing.Size(30, 30);
-            this.Zycie1.TabIndex = 4;
-            this.Zycie1.TabStop = false;
-            // 
-            // Zycie2
-            // 
-            this.Zycie2.BackgroundImage = global::Space_game.Properties.Resources.tank;
-            this.Zycie2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Zycie2.Location = new System.Drawing.Point(121, 710);
-            this.Zycie2.Name = "Zycie2";
-            this.Zycie2.Size = new System.Drawing.Size(30, 30);
-            this.Zycie2.TabIndex = 3;
-            this.Zycie2.TabStop = false;
-            // 
-            // Gracz
-            // 
-            this.Gracz.BackgroundImage = global::Space_game.Properties.Resources.tank;
-            this.Gracz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Gracz.Location = new System.Drawing.Point(360, 650);
-            this.Gracz.Name = "Gracz";
-            this.Gracz.Size = new System.Drawing.Size(50, 50);
-            this.Gracz.TabIndex = 2;
-            this.Gracz.TabStop = false;
-            // 
             // Space_invaders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,9 +176,9 @@
             this.Load += new System.EventHandler(this.Space_invaders_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KlawiszPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KlawiszZwolniony);
-            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gracz)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Zycie1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

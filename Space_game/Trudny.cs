@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Space_game;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,11 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace Space_game
+namespace Trudny
+
 {
     public partial class Space_invaders : Form
     {
-       //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         public Space_invaders()
         {
             InitializeComponent();
@@ -30,8 +32,8 @@ namespace Space_game
         const int y = 650;
         const int limit = 730;
 
-        int predkosc = -1;
-        int lewo =  -1;
+        int predkosc = -3;
+        int lewo = -1;
         int gora = 0;
         int cnt = 0;
         int pkt = 0;
@@ -41,10 +43,10 @@ namespace Space_game
         bool ruchPrawo;
         bool strzal;
 
-        
-        
-        
-        
+
+
+
+
         private void KlawiszPress(object sender, KeyEventArgs e) /// obsługa poruszania sie
         {
             if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
@@ -68,15 +70,15 @@ namespace Space_game
 
         private void KlawiszZwolniony(object sender, KeyEventArgs e)  ///Zatrzymywanie ruchu gracza
         {
-            if(e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
             {
                 ruchLewo = false;
             }
-            else if(e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
             {
                 ruchPrawo = false;
             }
-            else if(e.KeyCode == Keys.Space)
+            else if (e.KeyCode == Keys.Space)
             {
                 strzal = false;
             }
@@ -88,7 +90,7 @@ namespace Space_game
             PictureBox bullet = new PictureBox();
             bullet.Location = new Point(Gracz.Location.X + Gracz.Width / +2, Gracz.Location.Y - 20);
             bullet.Size = new Size(5, 20);
-            bullet.BackgroundImage = Properties.Resources.bullet;
+            bullet.BackgroundImage = Space_game.Properties.Resources.bullet;
             bullet.BackgroundImageLayout = ImageLayout.Stretch;
             bullet.Name = "Bullet";
             this.Controls.Add(bullet);
@@ -97,31 +99,31 @@ namespace Space_game
 
         private void GraczRuch(object sender, EventArgs e)
         {
-            if(ruchLewo && Gracz.Location.X >=0)
+            if (ruchLewo && Gracz.Location.X >= 0)
             {
-                Gracz.Left-=3;
+                Gracz.Left -= 3;
             }
-            else if(ruchPrawo && Gracz.Location.X <= limit)
+            else if (ruchPrawo && Gracz.Location.X <= limit)
             {
-                Gracz.Left+=3;
+                Gracz.Left += 3;
             }
         }
 
         private void KontrolaPociskow(object sender, EventArgs e)
         {
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
                 if (c is PictureBox && c.Name == "Bullet")
                 {
                     PictureBox bullet = (PictureBox)c;
                     bullet.Top -= 5;
 
-                    if(bullet.Location.Y <=0)
+                    if (bullet.Location.Y <= 0)
                     {
                         this.Controls.Remove(bullet);
                     }
 
-                    foreach(Control ct in this.Controls)
+                    foreach (Control ct in this.Controls)
                     {
                         if (ct is PictureBox && ct.Name == "Laser")
                         {
@@ -131,19 +133,19 @@ namespace Space_game
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(laser);
-                               // pkt++;
+                                // pkt++;
                                 //Punkty(pkt);
                             }
                         }
                     }
 
-                    foreach(Control ctrl in this.Controls)
+                    foreach (Control ctrl in this.Controls)
                     {
-                        if(ctrl is PictureBox && ctrl.Name == "Alien")
+                        if (ctrl is PictureBox && ctrl.Name == "Alien")
                         {
                             PictureBox obcyy = (PictureBox)ctrl;
 
-                            if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && !LimitPola(obcyy))
+                            if (bullet.Bounds.IntersectsWith(obcyy.Bounds) && !LimitPola(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
@@ -152,7 +154,7 @@ namespace Space_game
                                 Punkty(pkt);
                                 SprawdzWygrana();
                             }
-                            else if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && LimitPola(obcyy))
+                            else if (bullet.Bounds.IntersectsWith(obcyy.Bounds) && LimitPola(obcyy))
                             {
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
@@ -167,7 +169,7 @@ namespace Space_game
                     }
 
                 }
-                
+
             }
 
         }
@@ -176,12 +178,12 @@ namespace Space_game
         {
             int licznik = 0;
 
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
                 if (c is PictureBox && c.Name == "Alien") licznik++;
             }
-           if(this.pkt == 75)
-             {
+            if (this.pkt == 75)
+            {
                 Fala.Text = "Poziom drugi";
                 DateTime Tthen = DateTime.Now;
                 do
@@ -191,10 +193,10 @@ namespace Space_game
 
                 new Przeciwnik().CreateSprites2(this);
                 WstawObcego();
-             }
-             if(this.pkt == 225)
-              {
-                  Fala.Text = "Poziom trzeci";
+            }
+            if (this.pkt == 225)
+            {
+                Fala.Text = "Poziom trzeci";
                 DateTime Tthen = DateTime.Now;
                 do
                 {
@@ -202,11 +204,11 @@ namespace Space_game
                 } while (Tthen.AddSeconds(2) > DateTime.Now);
 
                 new Przeciwnik().CreateSprites3(this);
-                  WstawObcego();
-              }
-             if(this.pkt == 435)
-              {
-                 Fala.Text = "Poziom czwarty";
+                WstawObcego();
+            }
+            if (this.pkt == 435)
+            {
+                Fala.Text = "Poziom czwarty";
                 DateTime Tthen = DateTime.Now;
                 do
                 {
@@ -214,8 +216,8 @@ namespace Space_game
                 } while (Tthen.AddSeconds(2) > DateTime.Now);
 
                 new Przeciwnik().CreateSprites4(this);
-                  WstawObcego();
-              }
+                WstawObcego();
+            }
             if (this.pkt == 715)
             {
                 Fala.Text = "Poziom piąty";
@@ -232,15 +234,15 @@ namespace Space_game
 
             if (this.pkt == 1065) Wygrales();
         }
-        
+
 
         private void Wygrales() /// komunikat z informacja o wygranej
         {
             gra = false;
 
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                if(c is Label && c.Name == "Finish")
+                if (c is Label && c.Name == "Finish")
                 {
                     Label lbl = (Label)c;
                     lbl.Text = "Wygrales !" + "\n" + "Punkty: " + pkt.ToString();
@@ -256,9 +258,9 @@ namespace Space_game
         {
             timer1.Stop(); timer2.Stop(); timer3.Stop(); timer4.Stop(); timer5.Stop(); Obserwator.Stop();
 
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                if(c is Label && c.Name == "Finish")
+                if (c is Label && c.Name == "Finish")
                 {
                     Label lbl = (Label)c;
                     lbl.Text = "Przegrales!";
@@ -279,7 +281,7 @@ namespace Space_game
         private void Observe(object sender, EventArgs e)
         {
             Obserwator.Stop();
-            foreach(PictureBox opozniony in opoznienie)
+            foreach (PictureBox opozniony in opoznienie)
             {
                 obcy.Remove(opozniony);
             }
@@ -292,27 +294,27 @@ namespace Space_game
         }
 
 
-        private void OstatecznaKolizja(PictureBox a)  
-         {  
-                if(a.Bounds.IntersectsWith(Gracz.Bounds))
-                {
-                    Przegrales();
-                }           
+        private void OstatecznaKolizja(PictureBox a)
+        {
+            if (a.Bounds.IntersectsWith(Gracz.Bounds))
+            {
+                Przegrales();
+            }
         }
 
         private void UstawPozycje(PictureBox a)
         {
             int rozmiar = a.Height;
 
-            if(LimitPola(a))
+            if (LimitPola(a))
             {
-                gora = 1; lewo = 0; cnt++;
+                gora = 1; lewo = 0; cnt++;cnt++;
 
-                if(cnt == rozmiar)
+                if (cnt == rozmiar)
                 {
                     gora = 0; lewo = predkosc * (-1); Obserwator.Start();
                 }
-                else if(cnt == rozmiar*2)
+                else if (cnt == rozmiar * 2)
                 {
                     gora = 0; lewo = predkosc; cnt = 0; Obserwator.Start();
                 }
@@ -321,7 +323,7 @@ namespace Space_game
 
         private void RuchObcego()
         {
-            foreach(PictureBox obcyy in obcy)
+            foreach (PictureBox obcyy in obcy)
             {
                 obcyy.Location = new Point(obcyy.Location.X + lewo, obcyy.Location.Y + gora);
                 UstawPozycje(obcyy);
@@ -333,14 +335,15 @@ namespace Space_game
 
         private void RuchObcego_Tick(object sender, EventArgs e)
         {
-            RuchObcego();
+            RuchObcego();          
+
         }
 
         private void WstawObcego()
         {
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                if(c is PictureBox && c.Name =="Alien")
+                if (c is PictureBox && c.Name == "Alien")
                 {
                     PictureBox obcyy = (PictureBox)c;
                     obcy.Add(obcyy);
@@ -353,7 +356,7 @@ namespace Space_game
             PictureBox laser = new PictureBox();
             laser.Location = new Point(a.Location.X + a.Width / 3, a.Location.Y + 20);
             laser.Size = new Size(5, 20);
-            laser.BackgroundImage = Properties.Resources.laser;
+            laser.BackgroundImage = Space_game.Properties.Resources.laser;
             laser.BackgroundImageLayout = ImageLayout.Stretch;
             laser.Name = "Laser";
             this.Controls.Add(laser);
@@ -362,44 +365,50 @@ namespace Space_game
         private void StrzałTick(object sender, EventArgs e)
         {
             Random r = new Random();
-            int pick; 
+            int pick;
 
             if (obcy.Count > 0)
             {
                 pick = r.Next(obcy.Count);
                 Laser(obcy[pick]);
+                pick = r.Next(obcy.Count);
+                Laser(obcy[pick]);
+                pick = r.Next(obcy.Count);
+                Laser(obcy[pick]);
+
+
             }
         }
 
         private void KolizjaZLaserem(object sender, EventArgs e)
         {
-             foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
                 if (c is PictureBox && c.Name == "Laser")
                 {
                     PictureBox laser = (PictureBox)c;
-                    laser.Top += 5; 
+                    laser.Top += 5;
 
                     if (laser.Location.Y >= limit)
                     {
-                        this.Controls.Remove(laser); 
+                        this.Controls.Remove(laser);
                     }
                     if (laser.Bounds.IntersectsWith(Gracz.Bounds))
                     {
-                        this.Controls.Remove(laser); 
-                        UtrataZycia(); 
-                    }                    
+                        this.Controls.Remove(laser);
+                        UtrataZycia();
+                    }
                 }
             }
         }
 
         private void UtrataZycia()
         {
-            Gracz.Location = new Point(x,y);
-            foreach(Control c in this.Controls)     
+            Gracz.Location = new Point(x, y);
+            foreach (Control c in this.Controls)
             {
-                if(c is PictureBox && c.Name.Contains("Zycie") && c.Visible==true)
-                    
+                if (c is PictureBox && c.Name.Contains("Zycie") && c.Visible == true)
+
                 {
                     PictureBox Gracz = (PictureBox)c;
                     Gracz.Visible = false;
@@ -417,4 +426,3 @@ namespace Space_game
 }
 
 
-       

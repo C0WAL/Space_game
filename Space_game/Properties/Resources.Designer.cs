@@ -63,6 +63,16 @@ namespace Space_game.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgif {
+            get {
+                object obj = ResourceManager.GetObject("backgif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bullet {
             get {
                 object obj = ResourceManager.GetObject("bullet", resourceCulture);
@@ -86,6 +96,16 @@ namespace Space_game.Properties {
         internal static System.Drawing.Bitmap laser {
             get {
                 object obj = ResourceManager.GetObject("laser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap smallback {
+            get {
+                object obj = ResourceManager.GetObject("smallback", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

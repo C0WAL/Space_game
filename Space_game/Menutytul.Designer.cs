@@ -34,7 +34,7 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(317, 165);
+            this.Start.Location = new System.Drawing.Point(89, 184);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(133, 66);
             this.Start.TabIndex = 0;
@@ -44,7 +44,7 @@
             // 
             // Wyjscie
             // 
-            this.Wyjscie.Location = new System.Drawing.Point(317, 311);
+            this.Wyjscie.Location = new System.Drawing.Point(597, 189);
             this.Wyjscie.Name = "Wyjscie";
             this.Wyjscie.Size = new System.Drawing.Size(132, 57);
             this.Wyjscie.TabIndex = 1;
@@ -57,9 +57,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = global::Space_game.Properties.Resources.smallback;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Wyjscie);
             this.Controls.Add(this.Start);
+            this.DoubleBuffered = true;
             this.Name = "Menutytul";
             this.Load += new System.EventHandler(this.Menutytul_Load);
             this.ResumeLayout(false);

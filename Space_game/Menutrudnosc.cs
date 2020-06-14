@@ -28,5 +28,12 @@ namespace Space_game
         {
             Application.Exit();
         }
+
+        private void PoziomTrudny_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Trudny.Space_invaders f4 = new Trudny.Space_invaders();
+            f4.ShowDialog();
+        }
     }
 }
