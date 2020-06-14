@@ -24,7 +24,7 @@ namespace Space_game
             x = 150;
             y = 0;
         }
-        private void CreateControl(Form p)
+        private void CreateControl(Form p) /// przypisanie wlasciwosci tworzonym obcym
         {
             PictureBox pb = new PictureBox();
             pb.Location = new Point(x, y);
@@ -34,7 +34,7 @@ namespace Space_game
             pb.Name = "Alien";
             p.Controls.Add(pb);
         }
-        public void CreateSprites(Form p)
+        public void CreateSprites(Form p) /// utworzenie pierwszej fali przeciwnikow
         {
             for (int i = 0; i < wiersze; i++)
             {
@@ -48,7 +48,7 @@ namespace Space_game
             }
         }
 
-        public void CreateSprites2(Form p)
+        public void CreateSprites2(Form p)/// kolejne fale przeciwnikow
         {
             wiersze = 5;
             kolumny = 6;

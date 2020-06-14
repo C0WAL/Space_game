@@ -16,6 +16,8 @@ namespace Trudny
     public partial class Space_invaders : Form
     {
         //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer strz = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer wybuch = new System.Media.SoundPlayer();
         public Space_invaders()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace Trudny
 
         private void KlawiszPress(object sender, KeyEventArgs e) /// obsługa poruszania sie
         {
+            strz.SoundLocation = "laser.wav";
             if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
             {
                 ruchLewo = true;
@@ -59,6 +62,7 @@ namespace Trudny
             }
             else if (e.KeyCode == Keys.Space && gra && !strzal)
             {
+                strz.Play();
                 Pocisk();
                 strzal = true;
 
@@ -111,6 +115,7 @@ namespace Trudny
 
         private void KontrolaPociskow(object sender, EventArgs e)
         {
+            wybuch.SoundLocation = "wybuch.wav";
             foreach (Control c in this.Controls)
             {
                 if (c is PictureBox && c.Name == "Bullet")
@@ -147,6 +152,7 @@ namespace Trudny
 
                             if (bullet.Bounds.IntersectsWith(obcyy.Bounds) && !LimitPola(obcyy))
                             {
+                                wybuch.Play();
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
                                 obcy.Remove(obcyy);
@@ -396,6 +402,7 @@ namespace Trudny
                     if (laser.Bounds.IntersectsWith(Gracz.Bounds))
                     {
                         this.Controls.Remove(laser);
+                        wybuch.Play();
                         UtrataZycia();
                     }
                 }

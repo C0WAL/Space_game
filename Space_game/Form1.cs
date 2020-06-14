@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,14 +14,18 @@ namespace Space_game
 {
     public partial class Space_invaders : Form
     {
-       //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        //  System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer strz = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer wybuch = new System.Media.SoundPlayer();
+        
+
         public Space_invaders()
         {
             InitializeComponent();
             new Przeciwnik().CreateSprites(this);
             WstawObcego();
-            //player.SoundLocation = "space.wav";
-            //player.Play();
+           //player.SoundLocation = "space.wav";
+           // player.Play();
 
         }
         List<PictureBox> obcy = new List<PictureBox>();
@@ -47,6 +52,7 @@ namespace Space_game
         
         private void KlawiszPress(object sender, KeyEventArgs e) /// obsługa poruszania sie
         {
+            strz.SoundLocation = "laser.wav";
             if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
             {
                 ruchLewo = true;
@@ -57,6 +63,7 @@ namespace Space_game
             }
             else if (e.KeyCode == Keys.Space && gra && !strzal)
             {
+                strz.Play();
                 Pocisk();
                 strzal = true;
 
@@ -83,7 +90,7 @@ namespace Space_game
         }
 
 
-        private void Pocisk()
+        private void Pocisk() /// ustawienie wlasciwosciu pocuksu
         {
             PictureBox bullet = new PictureBox();
             bullet.Location = new Point(Gracz.Location.X + Gracz.Width / +2, Gracz.Location.Y - 20);
@@ -95,7 +102,7 @@ namespace Space_game
 
         }
 
-        private void GraczRuch(object sender, EventArgs e)
+        private void GraczRuch(object sender, EventArgs e)/// poruszanie gracza
         {
             if(ruchLewo && Gracz.Location.X >=0)
             {
@@ -107,8 +114,9 @@ namespace Space_game
             }
         }
 
-        private void KontrolaPociskow(object sender, EventArgs e)
+        private void KontrolaPociskow(object sender, EventArgs e) /// zarzadzanie co ma sie stac z pociskiem 
         {
+            wybuch.SoundLocation = "wybuch.wav";
             foreach(Control c in this.Controls)
             {
                 if (c is PictureBox && c.Name == "Bullet")
@@ -145,6 +153,7 @@ namespace Space_game
 
                             if(bullet.Bounds.IntersectsWith(obcyy.Bounds) && !LimitPola(obcyy))
                             {
+                                wybuch.Play();
                                 this.Controls.Remove(bullet);
                                 this.Controls.Remove(obcyy);
                                 obcy.Remove(obcyy);
@@ -172,7 +181,7 @@ namespace Space_game
 
         }
 
-        private void SprawdzWygrana()
+        private void SprawdzWygrana() /// sprawdzanie ilosciu zdobytych puntkow i dodawanie kolejnej fali
         {
             int licznik = 0;
 
@@ -263,6 +272,8 @@ namespace Space_game
                     Label lbl = (Label)c;
                     lbl.Text = "Przegrales!";
                     gra = false;
+                   
+                     
                 }
                 else
                 {
@@ -286,13 +297,13 @@ namespace Space_game
             opoznienie.Clear();
         }
 
-        private bool LimitPola(PictureBox a)
+        private bool LimitPola(PictureBox a)  /// ograniczenie poruszania sie
         {
             return a.Location.X <= 0 || a.Location.X >= limit;
         }
 
 
-        private void OstatecznaKolizja(PictureBox a)  
+        private void OstatecznaKolizja(PictureBox a)  /// kolizja z pociskiem przeciwnika
          {  
                 if(a.Bounds.IntersectsWith(Gracz.Bounds))
                 {
@@ -300,7 +311,7 @@ namespace Space_game
                 }           
         }
 
-        private void UstawPozycje(PictureBox a)
+        private void UstawPozycje(PictureBox a) /// poruszanie przeciwnika po mapie
         {
             int rozmiar = a.Height;
 
@@ -336,7 +347,7 @@ namespace Space_game
             RuchObcego();
         }
 
-        private void WstawObcego()
+        private void WstawObcego() /// wstawienie przeciwnikow na plansze
         {
             foreach(Control c in this.Controls)
             {
@@ -348,7 +359,7 @@ namespace Space_game
             }
         }
 
-        private void Laser(PictureBox a)
+        private void Laser(PictureBox a) /// ustawienie wlasciwosci lasera
         {
             PictureBox laser = new PictureBox();
             laser.Location = new Point(a.Location.X + a.Width / 3, a.Location.Y + 20);
@@ -359,7 +370,7 @@ namespace Space_game
             this.Controls.Add(laser);
         }
 
-        private void StrzałTick(object sender, EventArgs e)
+        private void StrzałTick(object sender, EventArgs e) /// strzaly obcych
         {
             Random r = new Random();
             int pick; 
@@ -371,7 +382,7 @@ namespace Space_game
             }
         }
 
-        private void KolizjaZLaserem(object sender, EventArgs e)
+        private void KolizjaZLaserem(object sender, EventArgs e) /// wykrycie detekcji z laserem przeciwnika
         {
              foreach(Control c in this.Controls)
             {
@@ -386,14 +397,15 @@ namespace Space_game
                     }
                     if (laser.Bounds.IntersectsWith(Gracz.Bounds))
                     {
-                        this.Controls.Remove(laser); 
+                        this.Controls.Remove(laser);
+                        wybuch.Play();
                         UtrataZycia(); 
                     }                    
                 }
             }
         }
 
-        private void UtrataZycia()
+        private void UtrataZycia() /// utrata dostepnego zycia i porazka
         {
             Gracz.Location = new Point(x,y);
             foreach(Control c in this.Controls)     
@@ -407,6 +419,7 @@ namespace Space_game
                 }
             }
             Przegrales();
+            
         }
 
         private void Space_invaders_Load(object sender, EventArgs e)
